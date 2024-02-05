@@ -36,3 +36,20 @@ El formato de la URL es el siguiente `DATABASE_URL="postgres://usuario:password@
 
 - `prisma`
 - `@prisma/client`
+
+## Usado en este ejemplo
+- Se han instalado los anteriores paquetes.
+- Se han eliminado las migraciones
+- Se ha cambiado el cliente de schema.prisma y escrito la database_url en .env
+- Se ha vuelto a generar el prisma 
+```sh 
+npx prisma generate
+```
+- Se han subido las tablas a la base de datos
+```sh 
+npx prisma db push
+```
+- Se ha ejecutado la semilla para incluir filas a las tablas 
+```sh 
+npm run seed
+```

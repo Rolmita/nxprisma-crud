@@ -1,4 +1,4 @@
-import Form from "@/components/Form"
+import Form from "@/components/ArticulosForm"
 import prisma from '@/lib/prisma'
 import { deleteArticulo } from "@/lib/actions"
 

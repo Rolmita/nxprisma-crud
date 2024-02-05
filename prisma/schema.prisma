@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider = "mysql"
+  url = env("DATABASE_URL") // uses connection pooling
 }
 
 model Articulo {
@@ -15,7 +14,7 @@ model Articulo {
   precio      Decimal? 
   createdAt   DateTime  @default(now()) 
   updatedAt   DateTime  @updatedAt
-  proveedores ArticuloProveedor[]
+  proveedores Proveedor[]
 
   @@map("articulos")
 }
@@ -26,18 +25,7 @@ model Proveedor {
   nacional    Boolean?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  articulos   ArticuloProveedor[]
+  articulos   Articulo[]
 
   @@map("proveedores")
-}
-
-model ArticuloProveedor {
-  proveedor   Proveedor @relation(fields: [proveedorId], references: [id])
-  proveedorId Int
-  articulo    Articulo  @relation(fields: [articuloId], references: [id])
-  articuloId  Int
-  assignedAt  DateTime  @default(now())
-
-  @@id([proveedorId, articuloId])
-  @@map("articulo-proveedor")
 }
